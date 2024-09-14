@@ -75,46 +75,9 @@
             </div>
         </form>
     </div>
-    <%
- // Handling form submission
- if("POST".equalsIgnoreCase(request.getMethod())){
-	 String name = request.getParameter("name");
-	    String email = request.getParameter("email");
-	    String gender = request.getParameter("gender");
-	    String password = request.getParameter("password");
-	    
-	    Connection conn = null;
-	   PreparedStatement pre = null;
-	    
-	    
-	    try{
-	    	
-	    		Class.forName("com.mysql.jdbc.Driver");
-	    		        
-	    		        // Create Connection to the database
-	    		        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbconn1", "root", "Puja2002");
-	    		        String sql = "insert into register(name,email,gender,password) values (?,?,?,?)";
-	    		        pre = conn.prepareStatement(sql);
-	    		        pre.setString(1, name);
-	    		        pre.setString(2, email);
-	    		        pre.setString(3, gender);
-	    		        pre.setString(4,password);
-	    		      int i =  pre.executeUpdate();
-	    		      if(i>0){
-	    		    	  out.println("Registration successful!");
-	    		      }
-	    		      else{
-	    		    	  out.println("Registration  not successful!");
-	    		    	
-	    		    }
-	    	
-	    }catch(Exception e){
-	    e.printStackTrace();	
-	    }
-	    
-	    
- }
-    
-    %>
+  
+	
+	
+	<%@include file = "DbConnection.jsp" %>
 </body>
 </html>
